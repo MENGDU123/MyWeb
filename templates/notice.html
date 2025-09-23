@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>地瓜盒 | 资源页</title>
+    <link rel="icon" type="img/ico" href="../static/images/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="../static/css/notice_style.css"/>
+</head>
+<body>
+    <div class="card-container" id="top">
+        <div class="card">
+            <div class="node"><a href="/">▨</a></div>
+            <h1 style="margin: 0">地瓜资源页</h1><br>
+            <b>来自 地瓜工作室 & 幽默镇 的整合包（时效性更新）</b>
+            <hr>
+                <ul>
+	            <b>地瓜天际线:重生</b>
+                    <li>对原地瓜天际线进行重组，旧的建筑会以意外的方式出现在新的地图中~</li>
+                    <li>预留1个月时间给玩家保留蓝图。</li>
+                    <li>该服务器将于国庆节开放。</li>
+                </ul>
+            <hr>
+        </div>
+        <div>
+            <ul class="file-list">
+                <!-- 文件列表位置 -->
+                {% if files %}
+                    {% for file in files %}
+                    <li class="file-item">
+                        <div class="file-info">
+                            <div class="file-name">{{ file.name }}</div>
+                            <div class="file-details">
+                                {{ file.type|upper }} | {{ file.size }} KB | {{ file.modified.strftime('%Y-%m-%d') }}
+                            </div>
+                        </div>
+                        <a href="/download/{{ file.name }}" class="download-btn">下载</a>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="empty-state">
+                        <div>暂无共享文件</div>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="card" style="margin-top: 20px;padding: 16px 24px">
+            <a href="./">返回主页</a> | <a href="#top">返回顶部</a>
+            <span style="float: right">
+            我是合法的 <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2025174285号-1</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

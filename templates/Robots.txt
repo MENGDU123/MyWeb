@@ -1,0 +1,14 @@
+User-agent: Bingbot
+Allow:
+
+User-agent: Bingbot
+Disallow: /*.php$
+Disallow: /*.js$
+Disallow: /*.inc$
+Disallow: /*.css$
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.ico$
+Disallow: /*.tar$
+Disallow: /*.txt$
+

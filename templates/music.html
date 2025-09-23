@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>地瓜盒 | 音乐页</title>
+        <link type="text/css" rel="stylesheet" href="../static/css/music_style.css"/>
+        <link rel="icon" type="ico" href="../static/images/favicon.ico">
+        <!-- 添加 FontAwesome 图标库 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            #player { margin: 20px; }
+            #playlist {
+                 list-style: none;
+                 padding: 0;
+                }
+            #playlist li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+            }
+            #playlist li:hover { background: #f0f0f0; }
+            
+            /* 复制按钮样式 */
+            .copy-btn {
+                background: #f0f0f0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px 10px;
+                cursor: pointer;
+                font-size: 12px;
+                margin-left: 10px;
+            }
+            .copy-btn:hover {
+                background: #e0e0e0;
+            }
+            .copy-btn.copied {
+                background: #4CAF50;
+                color: white;
+                border-color: #4CAF50;
+            }
+            
+            .song-name {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card-container">
+            
+            <div class="card" id="top">
+                <div class="node"><a href="/">▨</a></div>
+                <h1 style="margin: 0">地瓜音乐盒</h1><br>
+                这里可以试听你喜欢的音乐，复制的音乐外链可以用于网络唱片机。<br>
+                注意复制的内容前面需要加上本站的域名！（如果没有）<br>
+                <br>
+                <input type="text" id="textField0" value="http://www.kwymengdu.online">
+                <button onclick="copyText('textField0')">复制域名</button>
+            </div>
+            <br>
+            <div class="card">
+                <audio id="audio" controls></audio>
+
+                <ul id="playlist">
+                {% for song in songs %}
+                <li data-src="{{ url_for('stream_music', filename=song) }}">
+                    <span class="song-name">
+                        <i class="fas fa-music"></i> {{ song }}
+                    </span>
+                    <button class="copy-btn" data-url="{{ url_for('stream_music', filename=song) }}">
+                        <i class="fas fa-copy"></i> 复制
+                    </button>
+                </li>
+                {% endfor %}
+                </ul>
+                <span style="color: #e0e0e0;">*持续更新中……</span>
+            </div>
+            <div class="card" style="margin-top: 20px;padding: 16px 24px">
+                <a href="./">返回主页</a> | <a href="#top">返回顶部</a>
+                <span style="float: right">
+                我是合法的 <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2025174285号-1</a>
+                </span>
+            </div>
+        </div>
+
+        <!-- 将脚本放在页面底部，确保DOM加载完成 -->
+        <script type="text/javascript" src="../static/js/music_js.js"></script>
+        <script>
+        // 播放功能
+        const audio = document.getElementById('audio');
+        const playlistItems = document.querySelectorAll('#playlist li');
+        
+        playlistItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                // 只有当点击的不是复制按钮时才播放
+                if (!event.target.closest('.copy-btn')) {
+                    const songSrc = item.getAttribute('data-src');
+                    audio.src = songSrc;
+                    audio.play();
+                }
+            });
+        });
+        </script>
+    </body>
+</html>

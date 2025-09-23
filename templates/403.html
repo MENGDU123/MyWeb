@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <title>地瓜盒 | 错误页</title>
+      <script>
+          document.addEventListener('keydown', function(event) { if (event.key === 'Enter' || event.keyCode === 13) { window.location.href = '/';}});
+          document.addEventListener('click', function() {window.location.href = '/';});
+      </script>
+      <style>
+          body {
+            background-color:#000000;
+            }
+
+          .center {
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+            line-height: 24px;
+            }
+
+          h1 {
+            animation: blink 1.25s steps(1) infinite;
+            font-family:"MS Gothic", Times, serif;
+            font-size: 20px;
+            }
+
+          @keyframes blink {
+            0%, 50% {
+              opacity: 1;
+            }
+            51%, 100% {
+              opacity: 0;
+            }
+}
+      </style>
+  </head>
+  <body>
+      <div class="center">
+          <span style="color:black"><img src="/images/Slugwalk.gif" alt="求生者" title="美味的蛞蝓猫">_____</span>
+          <h1>
+              403 REFUSE ACCESS!<br>
+              Press Enter to go to index ...<br>
+              ## 地瓜盒 ##
+          </h1>
+
+      </div>
+
+  </body>
+</html>
