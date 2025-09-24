@@ -2,3 +2,4 @@
 /.idea
 /static/music
 /static/resources
+__pycache__/

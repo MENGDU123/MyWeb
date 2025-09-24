@@ -1,6 +1,10 @@
 from flask import Flask, render_template, send_from_directory,send_file,abort
 from datetime import datetime
 import os
+#导入日志配置
+from log import dir_test
+#检查文件夹是否建立
+dir_test()
 
 app = Flask(__name__)
 
