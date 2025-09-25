@@ -1,4 +1,6 @@
 /venv
 /.idea
 /static/music
-/static/resources
+/static/resource
+/logs
+__pycache__/
