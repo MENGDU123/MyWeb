@@ -2,11 +2,16 @@ from flask import Flask, render_template, send_from_directory,send_file,abort
 from datetime import datetime
 import os
 #导入日志配置
-from log import dir_test
+from log import dir_test,setup_flask_logging
 #检查文件夹是否建立
 dir_test()
 
+
 app = Flask(__name__)
+
+# 设置 Flask 日志
+log_path = setup_flask_logging(app)  # 调用日志设置函数
+print(f"日志文件路径: {log_path}")  # 可选：打印日志文件路径
 
 # 音乐文件目录
 app.config['UPLOAD_FOLDER'] = 'static/music' 
@@ -41,7 +46,7 @@ def get_file_info():
             })
     return files
 #显示资源页
-@app.route('/resource')
+@app.route('/resources')
 def notice():
     files = get_file_info()
     return render_template('notice.html', files=files)
