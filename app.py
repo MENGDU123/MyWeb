@@ -46,7 +46,7 @@ def get_file_info():
             })
     return files
 #显示资源页
-@app.route('/resources')
+@app.route('/resource')
 def notice():
     files = get_file_info()
     return render_template('notice.html', files=files)
