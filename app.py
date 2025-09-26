@@ -11,7 +11,26 @@ app = Flask(__name__)
 
 # 设置 Flask 日志
 log_path = setup_flask_logging(app)  # 调用日志设置函数
-print(f"日志文件路径: {log_path}")  # 可选：打印日志文件路径
+print(f"Log file path:{log_path}")  # 打印日志文件路径
+
+#实验性内容，用于分享开源软件，允许任何爬虫爬取（可能存在安全性问题）。
+ack = str(input("Enable open-source resource sharing?(Y/n)"))
+if ack == "Y":
+    try:#切换工作路径
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        os.chdir("./static/share")
+        os.system('screen -dmS http.server bash -c "python3 -m http.server"')
+        # os.system("python -m http.server") #Windows测试使用
+    except Exception as e:
+        print(e,"不支持当前控制台。")
+    else:
+        @app.route('/share') #只有http服务成功启动后才加载页面。
+        def share():
+            return render_template('share.html')
+else:
+    @app.route('/share')  # 只有http服务成功启动后才加载页面。
+    def share_err():
+        return render_template('204.html')
 
 # 音乐文件目录
 app.config['UPLOAD_FOLDER'] = 'static/music' 
