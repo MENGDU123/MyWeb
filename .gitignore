@@ -2,5 +2,6 @@
 /.idea
 /static/music
 /static/resource
+/static/share
 /logs
 __pycache__/
