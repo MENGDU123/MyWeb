@@ -1,6 +1,13 @@
+import subprocess
+from sys import stdout
+
 from flask import Flask, render_template, send_from_directory,send_file,abort
 from datetime import datetime
 import os
+import platform
+
+from werkzeug.utils import append_slash_redirect
+
 #导入日志配置
 from log import dir_test,setup_flask_logging
 #检查文件夹是否建立
@@ -11,7 +18,7 @@ app = Flask(__name__)
 
 # 设置 Flask 日志
 log_path = setup_flask_logging(app)  # 调用日志设置函数
-print(f"日志文件路径: {log_path}")  # 可选：打印日志文件路径
+print(f"Log file path:{log_path}")  # 打印日志文件路径
 
 # 音乐文件目录
 app.config['UPLOAD_FOLDER'] = 'static/music' 
