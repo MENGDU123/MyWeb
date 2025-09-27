@@ -20,57 +20,6 @@ app = Flask(__name__)
 log_path = setup_flask_logging(app)  # 调用日志设置函数
 print(f"Log file path:{log_path}")  # 打印日志文件路径
 
-# #实验性内容，用于分享开源软件，允许任何爬虫爬取（可能存在安全性问题）。
-# sharing_enabled = False  # 使用变量控制状态
-# http_process = None
-#
-# ack = input("Enable open-source resource sharing?(Y/n) ").strip().upper()
-# if ack == "Y":
-#     try:
-#         # 不需要切换工作目录，直接使用share_dir
-#         base_dir = os.path.dirname(os.path.abspath(__file__))
-#         share_dir = os.path.join(base_dir, "static", "share")
-#         #确认目录是否存在，不存在则新建
-#         if not os.path.exists(share_dir):
-#             os.makedirs(share_dir,exist_ok=True)
-#
-#         os.chdir(share_dir)
-#
-#         #根据平台选择启动方式
-#         current_platform = platform.system()
-#         if current_platform == "Windows":
-#             http_process = subprocess.Popen(['python','-m','http.server','--directory',share_dir]
-#                                             ,stdout=subprocess.PIPE,
-#                                             stderr=subprocess.PIPE)
-#             @app.route('/share') #启用该页面
-#             def share():
-#                 return render_template('share.html')
-#
-#         elif current_platform == "Linux":
-#             http_process = subprocess.Popen(['python3','-m','http.server','--directory',share_dir],
-#                                             stdout = subprocess.PIPE,
-#                                             stderr = subprocess.PIPE,
-#                                             creationflags = subprocess.CREATE_NEW_PROCESS_GROUP
-#                                             )
-#             @app.route('/share')  # 启用该页面
-#             def share():
-#                 return render_template('share.html')
-#
-#         else:
-#             print(f"Unsupported platform:{current_platform}")
-#             raise Exception("Unsupported platform") #抛出不支持平台的问题。
-#     except Exception as e:
-#         print(f"Error starting file sharing:{e} - 不支持当前系统或控制台终端")
-#         sharing_enabled = False
-# else:
-#     print("File sharing disabled by user") #关闭该功能
-#     sharing_enabled = False
-#
-# if sharing_enabled: #如果未启用则重定向到403
-#     @app.route('/share')
-#     def share():
-#         return render_template('403.html')
-
 # 音乐文件目录
 app.config['UPLOAD_FOLDER'] = 'static/music' 
 # 获取音乐文件列表
